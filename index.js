@@ -99,39 +99,24 @@ export default class SliderVolumeController extends Component {
         />
       );
     }
+    if( Platform.OS === 'ios' ){
+      const onValueChange = this.props.onValueChange && ((event: Event) => {
+          this.props.onValueChange &&
+          this.props.onValueChange(event.nativeEvent.value);
+        });
 
-    return (
-      <View
-        style={[
-          this.props.style,
-          {
-            marginLeft: 20,
-            marginRight: 20,
-            flex: 1,
-            flexDirection: "row",
-            width: viewWidth,
-            alignItems: "center",
-            justifyContent: "center"
-          }
-        }/>
-        if( Platform.OS === 'ios' ){
-          const onValueChange = this.props.onValueChange && ((event: Event) => {
-              this.props.onValueChange &&
-              this.props.onValueChange(event.nativeEvent.value);
-            });
-  
-          const { style, ...rest } = this.props;
-          
-            slider = <ReactNativeVolumeControllerSlider {...rest}
-                                                        onValueChange={onValueChange}
-                                                        style={[styles.slider, {width:sliderWidth}, style]}/>
-        }
+      const { style, ...rest } = this.props;
 
-        return(<View style={[this.props.style, {marginLeft:10, marginRight:10,flex:1, flexDirection:"row", width:viewWidth,
-              alignItems:'center',
-              justifyContent:'center'}]}>
-              {slider}
-            </View>);
+        slider = <ReactNativeVolumeControllerSlider {...rest}
+                                                    onValueChange={onValueChange}
+                                                    style={[styles.slider, {width:sliderWidth}, style]}/>
+    }
+
+    return(<View style={[this.props.style, {marginLeft:10, marginRight:10,flex:1, flexDirection:"row", width:viewWidth,
+          alignItems:'center',
+          justifyContent:'center'}]}>
+          {slider}
+        </View>);
   }
 }
 
