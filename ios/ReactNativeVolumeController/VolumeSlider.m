@@ -2,11 +2,15 @@
 
 @implementation VolumeSlider
 
+float volume = 0;
+
 - (id)init {
     if (self = [super init]) {
+        volume = 0;
         for (id current in self.subviews) {
             if ([current isKindOfClass:[UISlider class]]) {
                 _slider = (UISlider *) current;
+                [_slider setContinuous: NO];
                 [_slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
             }
             
@@ -69,10 +73,9 @@
 
 - (void)sliderValueChanged:(UISlider *)sender {
     float value = sender.value;
-    if (self.onValueChange) {
-        self.onValueChange(@{
-                             @"value": @(value),
-                             });
+    if (self.onValueChange && value != volume) {
+        volume = value;
+        self.onValueChange(@{ @"value": @(value) });
     }
 }
 
