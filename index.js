@@ -26,7 +26,8 @@ export default class SliderVolumeController extends Component {
      */
     thumbSize: PropTypes.shape({
       width: PropTypes.number,
-      height: PropTypes.number
+      height: PropTypes.number,
+      sliderWidth: 80
     }),
 
     /**
