@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
@@ -48,7 +47,7 @@ public class ReactNativeVolumeControllerModule extends ReactContextBaseJavaModul
     }
 
 
-    public void sendEvent(ReactContext reactContext, String eventName, @Nullable WritableMap params) {
+    public void sendEvent(ReactContext reactContext, String eventName, WritableMap params) {
       this.context.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
           .emit(eventName, params);
     }//VolumeControllerValueUpdatedEvent
